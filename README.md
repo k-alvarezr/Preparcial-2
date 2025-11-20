@@ -2,9 +2,7 @@
 
 Se usa un contenedor Docker con PostgreSQL.
 
-1. Crear el contenedor:
-
-En PowerShell / terminal de VS Code (Windows), en una sola línea:
+1. Crear el contenedor (En PowerShell / terminal de VS Code (Windows), en una sola línea): 
 
 docker run --name prep-db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=preparcial_db -p 5432:5432 -d postgres:16
 
@@ -14,18 +12,18 @@ docker ps
 
 # 🗄️ Migraciones y seed SQL
 
-Los scripts están en la carpeta sql/:
+-Los scripts están en la carpeta sql/:
 
 sql/migrations/001_schema.sql → crea tablas users, roles, users_roles.
 
 sql/seed/seed_users_roles.sql → inserta usuarios y roles de prueba.
 
-Ejecutar desde la raíz del proyecto (backend):
+-Ejecutar desde la raíz del proyecto (backend):
 
-# Migraciones (estructura)
+Migraciones (estructura): 
 docker exec -i prep-db psql -U postgres -d preparcial_db < .\sql\migrations\001_schema.sql
 
-# Seed (usuarios y roles probados)
+Seed (usuarios y roles probados): 
 docker exec -i prep-db psql -U postgres -d preparcial_db < .\sql\seed\seed_users_roles.sql
 
 
