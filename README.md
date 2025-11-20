@@ -1,18 +1,18 @@
-🐘 Base de datos con Docker
+# 🐘 Base de datos con Docker
 
 Se usa un contenedor Docker con PostgreSQL.
 
-1. Crear el contenedor
+1. Crear el contenedor:
 
 En PowerShell / terminal de VS Code (Windows), en una sola línea:
 
 docker run --name prep-db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=preparcial_db -p 5432:5432 -d postgres:16
 
-2. Verificar que está corriendo
+2. Verificar que está corriendo: 
 docker ps
 
 
-🗄️ Migraciones y seed SQL
+# 🗄️ Migraciones y seed SQL
 
 Los scripts están en la carpeta sql/:
 
@@ -29,7 +29,7 @@ docker exec -i prep-db psql -U postgres -d preparcial_db < .\sql\migrations\001_
 docker exec -i prep-db psql -U postgres -d preparcial_db < .\sql\seed\seed_users_roles.sql
 
 
-👤 Usuarios de prueba
+# 👤 Usuarios de prueba
 
 Después de ejecutar el seed:
 
@@ -46,7 +46,7 @@ user2@example.com / clave123
 user3@example.com / clave123
 
 
-🔐 Autenticación
+# 🔐 Autenticación
 
 Todos los endpoints protegidos usan JWT tipo Bearer:
 
@@ -55,7 +55,7 @@ Authorization: Bearer <access_token>
 El access_token se obtiene llamando a POST /auth/login.
 
 
-🧾 Endpoints principales
+# 🧾 Endpoints principales
 
 Todos los endpoints que requieren autenticación deben incluir el header:
 Authorization: Bearer <access_token>
@@ -88,7 +88,7 @@ GET /roles (solo rol admin)
 Lista todos los roles.
 
 
-📝 Notas
+# 📝 Notas
 
 -Las contraseñas se almacenan hasheadas con bcrypt.
 
